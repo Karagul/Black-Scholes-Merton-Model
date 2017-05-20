@@ -301,9 +301,9 @@ Start = '20170302223500'
 Hold = '20170303233000'
 End = '20170316120000'
 AT = AnnualizedTime.AnnTime(Market,Start,Hold,End)
-print(AT.market)
-print(AT.ttm)
-print(AT.hdingper)
-print(AT.ttmafthdingper)
-print(AT.toltradays)
+print('Market: {}'.format(AT.market))
+print('Time to Maturity: {}'.format(AT.ttm))
+print('Holding Period: {}'.format(AT.hdingper))
+print('Time to Maturity after Holding Period: {}'.format(AT.ttmafthdingper))
+print('Total Trading Days: {}'.format(AT.toltradays))
 #################################################
