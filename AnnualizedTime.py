@@ -291,16 +291,11 @@ When using this module, user has two things to do in advance.
 '''
 
 ##### This is an example to use this module #####
-import sys
-# Remember to change the file path
-sys.path.append(r'C:\Users\0010012\Desktop\Kiwi Files')
-import AnnualizedTime
-
 Market = 'US'
 Start = '20170302223500'
 Hold = '20170303233000'
 End = '20170316120000'
-AT = AnnualizedTime.AnnTime(Market,Start,Hold,End)
+AT = AnnTime(Market,Start,Hold,End)
 print('Market: {}'.format(AT.market))
 print('Time to Maturity: {}'.format(AT.ttm))
 print('Holding Period: {}'.format(AT.hdingper))
