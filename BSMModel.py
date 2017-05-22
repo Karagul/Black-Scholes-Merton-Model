@@ -21,6 +21,9 @@ SOFTWARE.
 ####################################################################################################
 
 '''
+This is the Black-Scholes-Merton model to price options.
+Before running this module, users please make sure that you can execute my AnnualizedTime module normally.
+Reference: https://github.com/kaiweihuang/Black-Scholes-Merton-Model/blob/master/AnnualizedTime.py
 About dividend: the default setting is no dividend included.
     User can add dividend calculation with known dividend payment in the holding period.
     Type1: D = [rate,'Con'], which is the continuous dividend payment over certain period with a constant payment rate.
@@ -1067,7 +1070,8 @@ class BSMModel():
 ###############################################################################
 
 '''
-
+Once again, before running this module, users should make sure that you can execute my AnnualizedTime module normally.
+Reference: https://github.com/kaiweihuang/Black-Scholes-Merton-Model/blob/master/AnnualizedTime.py
 '''
 
 ##### This is an example to use this module #####
