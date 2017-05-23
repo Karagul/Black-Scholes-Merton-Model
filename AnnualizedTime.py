@@ -1,14 +1,18 @@
 '''
 MIT License
+
 Copyright (c) 2017 Kiwi
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
+
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -287,7 +291,7 @@ class AnnTime():
 '''
 When using this module, user has two things to do in advance.
 1. Download '2017TWWDays.csv' and '2017USWDays.csv' files from my git hub.
-2. Modify the file path (line 45 and 144) that imports the two csv files.
+2. Modify the file path (line 78 and 177) that imports the two csv files.
 '''
 
 ##### This is an example to use this module #####
