@@ -1,14 +1,18 @@
 '''
 MIT License
+
 Copyright (c) 2017 Kiwi
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
+
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,7 +33,8 @@ About dividend: the default setting is no dividend included.
     Type1: D = [rate,'Con'], which is the continuous dividend payment over certain period with a constant payment rate.
     Type2: D = [[cash,stock],'Dis'], which can include a one-time cash or stock dividends payment over certain period.
 There are several parts in this module can be optimized.
-In fact, some factors are much more crucial than others while trading options, so users can develop a faster version of this pricing model by yourself.
+In fact, some factors are much more crucial than others while trading options,
+so users can develop a faster version of this pricing model by yourself.
 There are many detailed explanations in this code, which may help users run this module smoothly.
 '''
 
@@ -285,9 +290,11 @@ class BSMModel():
                 d1 = (M.log(S/K)+((R-D[0])+(Vol*Vol/2))*T)/(Vol*M.sqrt(T))
                 d2 = d1-Vol*M.sqrt(T)
                 if Type == 'C':
-                    return -(M.exp((-D[0])*T)*S*norm.pdf(d1)*Vol)/(2*M.sqrt(T))-R*K*M.exp((-R)*T)*norm.cdf(d2)+D[0]*S*M.exp((-D[0])*T)*norm.cdf(d1)
+                    return (-(M.exp((-D[0])*T)*S*norm.pdf(d1)*Vol)/(2*M.sqrt(T))
+                            -R*K*M.exp((-R)*T)*norm.cdf(d2)+D[0]*S*M.exp((-D[0])*T)*norm.cdf(d1))
                 elif Type == 'P':
-                    return -(M.exp((-D[0])*T)*S*norm.pdf(d1)*Vol)/(2*M.sqrt(T))+R*K*M.exp((-R)*T)*norm.cdf(-d2)-D[0]*S*M.exp((-D[0])*T)*norm.cdf(-d1)
+                    return (-(M.exp((-D[0])*T)*S*norm.pdf(d1)*Vol)/(2*M.sqrt(T))
+                            +R*K*M.exp((-R)*T)*norm.cdf(-d2)-D[0]*S*M.exp((-D[0])*T)*norm.cdf(-d1))
                 else:
                     print('Error: Please enter the correct type of the option, C or P.')
                     return None
@@ -571,9 +578,11 @@ class BSMModel():
                 d1 = (M.log(S/K)+((R-D[0])+(Vol*Vol/2))*T)/(Vol*M.sqrt(T))
                 d2 = d1-Vol*M.sqrt(T)
                 if Type == 'C':
-                    return (D[0]*M.exp((-D[0])*T)*norm.cdf(d1))-((M.exp((-D[0])*T)*norm.pdf(d1))*(2*(R-D[0])*T-d2*Vol*M.sqrt(T)))/(2*T*Vol*M.sqrt(T))
+                    return ((D[0]*M.exp((-D[0])*T)*norm.cdf(d1))
+                            -((M.exp((-D[0])*T)*norm.pdf(d1))*(2*(R-D[0])*T-d2*Vol*M.sqrt(T)))/(2*T*Vol*M.sqrt(T)))
                 elif Type == 'P':
-                    return (-D[0]*M.exp((-D[0])*T)*norm.cdf(-d1))-((M.exp((-D[0])*T)*norm.pdf(d1))*(2*(R-D[0])*T-d2*Vol*M.sqrt(T)))/(2*T*Vol*M.sqrt(T))
+                    return ((-D[0]*M.exp((-D[0])*T)*norm.cdf(-d1))
+                            -((M.exp((-D[0])*T)*norm.pdf(d1))*(2*(R-D[0])*T-d2*Vol*M.sqrt(T)))/(2*T*Vol*M.sqrt(T)))
                 else:
                     print('Error: Please enter the correct type of the option, C or P.')
                     return None
@@ -794,7 +803,8 @@ class BSMModel():
                 d1 = (M.log(S/K)+((R-D[0])+(Vol*Vol/2))*T)/(Vol*M.sqrt(T))
                 d2 = d1-Vol*M.sqrt(T)
                 if Type == 'C' or Type == 'P':
-                    return ((-M.exp((-D[0])*T)*norm.pdf(d1))/(2*S*T*Vol*M.sqrt(T)))*(2*D[0]*T+1+(((2*(R-D[0])*T-d2*Vol*M.sqrt(T))*d1)/(Vol*M.sqrt(T))))
+                    return (((-M.exp((-D[0])*T)*norm.pdf(d1))/(2*S*T*Vol*M.sqrt(T)))
+                            *(2*D[0]*T+1+(((2*(R-D[0])*T-d2*Vol*M.sqrt(T))*d1)/(Vol*M.sqrt(T)))))
                 else:
                     print('Error: Please enter the correct type of the option, C or P.')
                     return None
@@ -1037,8 +1047,8 @@ class BSMModel():
         ##### The theoretical charm #####
         self.charm = Charm(BasicInfo[0],BasicInfo[1],BasicInfo[2],BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)
         ##### The one day charm for practical use #####
-        self.onedaycharm = Charm(BasicInfo[0],BasicInfo[1],BasicInfo[2],BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)/TradingDays
-
+        self.onedaycharm = (Charm(BasicInfo[0],BasicInfo[1],BasicInfo[2],
+                                  BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)/TradingDays)
         ##### The theoretical speed #####
         self.speed = Speed(BasicInfo[0],BasicInfo[1],BasicInfo[2],BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)
         ##### The one percent speed for practical use #####
@@ -1053,12 +1063,14 @@ class BSMModel():
         self.color = Color(BasicInfo[0],BasicInfo[1],BasicInfo[2],BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)
         ##### The one day color for practical use #####
         ##### This means the changes of gamma amount when the time passes for 1 day #####
-        self.onedaycolor = Color(BasicInfo[0],BasicInfo[1],BasicInfo[2],BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)/TradingDays
+        self.onedaycolor = (Color(BasicInfo[0],BasicInfo[1],BasicInfo[2],
+                                  BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)/TradingDays)
 
         ##### The theoretical dual delta #####
         self.dualdelta = DualDelta(BasicInfo[0],BasicInfo[1],BasicInfo[2],BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)
         ##### The absolute value of dual delta for practical use #####
-        self.absdualdelta = abs(DualDelta(BasicInfo[0],BasicInfo[1],BasicInfo[2],BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend))
+        self.absdualdelta = (abs(DualDelta(BasicInfo[0],BasicInfo[1],BasicInfo[2],
+                                           BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)))
         ##### The theoretical dual gamma #####
         self.dualgamma = DualGamma(BasicInfo[0],BasicInfo[1],BasicInfo[2],BasicInfo[3],BasicInfo[4],BasicInfo[5],Dividend)
         ##### The put-call parity #####
